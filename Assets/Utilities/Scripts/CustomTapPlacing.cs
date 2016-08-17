@@ -51,7 +51,7 @@ public class CustomTapPlacing : MonoBehaviour {
                 // to how the object is placed.  For example, consider
                 // placing based on the bottom of the object's
                 // collider so it sits properly on surfaces.
-                this.transform.position = hitInfo.point;
+                this.transform.parent.position = hitInfo.point;
 
                 // Rotate this object to face the user.
                 Quaternion toQuat = Camera.main.transform.localRotation;
