@@ -40,7 +40,7 @@ public class MixerManager : MonoBehaviour {
     bool effectsActive;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         songManager = GetComponent<SongManager>();
         allTracks = new List<Track>();
         activeSongTracks = new List<Track>();
@@ -54,11 +54,11 @@ public class MixerManager : MonoBehaviour {
         initializeSongs(allSongs);
         effectsActive = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    void Update() {
+
+    }
 
     void initializeSongs(List<SongManager.Song> songs)
     {
@@ -104,7 +104,7 @@ public class MixerManager : MonoBehaviour {
             // dynamically sets current tracks audio clip
             currentClip = Resources.Load<AudioClip>("Audio/" + song.tracks[i].clipName);
             initTrackAudio(prefabName, currentClip, song.tracks[i]);
-            
+
             //foreach (Transform child in currentTrack.transform)
             //{
             //    if (child.GetComponent<Collider>())
@@ -171,7 +171,7 @@ public class MixerManager : MonoBehaviour {
         // initializes audioClip of instantiated prefab
         track.audioSource.clip = audioClip;
         track.audioSource.Play();
- 
+
     }
 
     private void ToggleSpecialEffects()
@@ -190,7 +190,7 @@ public class MixerManager : MonoBehaviour {
                 }
                 else
                 {
-                    effect.Play();    
+                    effect.Play();
                 }
             }
         }
@@ -231,6 +231,45 @@ public class MixerManager : MonoBehaviour {
 
         // MixerController relies on startup song to be loaded first
         mixer.AddComponent<MixerController>();
+    }
+
+    public void ResetInstrumentPositions()
+    {
+        Transform camPos = Camera.main.transform;
+        float posCounter = -1.5f;
+
+        posCounter += 0.5f;
+    
+        for (int i = 0; i < allTracks.Count; i++)
+        {
+            GameObject go;
+            go = GameObject.Find(allTracks[i].name);
+
+            int angle = i * (180 / allTracks.Count);
+            angle = angle + (int)camPos.eulerAngles.y - 90;
+            Vector3 plotPos = Circle(camPos.position, 1f, angle);
+
+            StartCoroutine(SmoothTransform(go, plotPos, 4));
+            //go.transform.position = plotPos;
+            go.transform.LookAt(go.transform.position + Camera.main.transform.rotation * Vector3.back,
+                          Camera.main.transform.rotation * Vector3.up);
+
+            //Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, cameraPos - plotPos);
+
+            posCounter += 0.5f;
+        }
+    }
+
+    IEnumerator SmoothTransform(GameObject go, Vector3 direction, float speed)
+    {
+        float elapsedTime = 0;
+        
+        while (elapsedTime < speed)
+        {
+            go.transform.position = Vector3.Lerp(go.transform.position, direction, (elapsedTime / speed));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
     // iterates over assembled lists to determine proper track state for active song

@@ -888,7 +888,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0.1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 1.8
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -925,7 +925,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0.50555557
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

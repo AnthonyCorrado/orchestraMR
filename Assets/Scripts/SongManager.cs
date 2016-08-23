@@ -90,12 +90,12 @@ public class SongManager : MonoBehaviour {
         InstrumentList.Add(new Track("glockenspiel", "xylophone", 7.0f, false, false, "evolutionGlockenspiel", null, "Evolution"));
         //InstrumentList.Add(new Track("harp", "string", 7.0f, false, false, "evolutionHarp", null, "Evolution"));
         //InstrumentList.Add(new Track("percussion", "percussionSymbols", 7.0f, false, false, "evolutionPercussion", null, "Evolution"));
-        InstrumentList.Add(new Track("piano", "piano", 7.0f, false, false, "evolutionPiano", null, "Evolution"));
         //InstrumentList.Add(new Track("stringMix", "strings", 7.0f, false, false, "evolutionStrings", null, "Evolution"));
         //InstrumentList.Add(new Track("violas", "strings", 7.0f, false, false, "evolutionViolas", null, "Evolution"));
         InstrumentList.Add(new Track("violin", "string", 7.0f, false, false, "evolutionViolin", null, "Evolution"));
         //InstrumentList.Add(new Track("windDeep", "wind", 7.0f, false, false, "evolutionWindDeep", null, "Evolution"));
         InstrumentList.Add(new Track("windMid", "wind", 7.0f, false, false, "evolutionWindMid", null, "Evolution"));
+        InstrumentList.Add(new Track("piano", "piano", 7.0f, false, false, "evolutionPiano", null, "Evolution"));
 
         return InstrumentList;
     }
