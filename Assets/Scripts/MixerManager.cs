@@ -247,7 +247,7 @@ public class MixerManager : MonoBehaviour {
 
             int angle = i * (180 / allTracks.Count);
             angle = angle + (int)camPos.eulerAngles.y - 90;
-            Vector3 plotPos = Circle(camPos.position, 1f, angle);
+            Vector3 plotPos = Circle(camPos.position, 1.25f, angle);
 
             StartCoroutine(SmoothTransform(go, plotPos, 4));
             //go.transform.position = plotPos;
